@@ -1,0 +1,717 @@
+:root {
+	--white: #ffffff;
+	--accent-100: #f3f9e3;
+	--accent-200: #d3c6a6;
+	--primary: #a78b4a;
+	--accent-600: #534627;
+	--primary-800: #15120a;
+	--black-100: #0000002a;
+	--black: #000000;
+
+	font-family: "Barlow", sans-serif;
+}
+
+/*Set variables based on clients logo. --primary = Metallic Sunburst, found in the WSP logo lettering. I created a color palette
+on coolers.co and chose some subtle earthy tones for possible accents. Client likes the --white, clean appearance. Want to maintain
+simplicity with --white and --primary, but like the idea of using --primary-800 as the text color to create a more soothing effect.*/
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100vh;
+	width: auto;
+	padding-bottom: 20vh;
+}
+
+header {
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+
+/*Begin nav bar styling*/
+.nav-container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: 1600px;
+	height: auto;
+}
+
+.nav-container ul {
+	padding: 2vh 5vw;
+	display: flex;
+	width: 100%;
+	max-width: 1600px;
+	height: auto;
+}
+
+.nav-container ul li {
+	margin-inline: 2vw;
+	width: fit-content;
+	height: auto;
+	align-self: baseline;
+	text-align: center;
+	list-style: none;
+}
+
+.nav-container ul li:nth-child(3) {
+	margin-left: auto;
+	margin-right: auto;
+	width: fit-content;
+	height: auto;
+}
+
+.nav-container ul li .link,
+.nav-container ul li .active-link {
+	position: relative;
+	padding: 1px;
+	text-decoration: none;
+	font-size: 1.25rem;
+	opacity: 0.85;
+	color: var(--primary-800);
+	cursor: url(images/Cursor.svg), default;
+}
+
+.nav-container ul li .active-link {
+	cursor: default !important;
+}
+
+.nav-container .img-container {
+	display: flex;
+	aspect-ratio: 1;
+	width: 25vw;
+	max-width: 400px;
+	height: auto;
+	max-height: 400px;
+	overflow: auto;
+	cursor: url(images/Cursor.svg), default;
+}
+
+a .img-container img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+/*Nav link hover animation. Creates a thin background color layer located at the bottom of the link. Upon hover/focus
+the line then scales to full width using the transition listed.*/
+.nav-container ul li .link::before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(
+		to left,
+		var(--white),
+		var(--primary) 5%,
+		var(--primary) 95%,
+		var(--white) 100%
+	);
+	transform: scaleX(0);
+	transition: transform 0.2s ease-in-out 1ms;
+	will-change: transform;
+}
+
+.nav-container ul li .link:focus::before,
+.nav-container ul li .link:focus-within::before,
+.nav-container ul li .link:hover::before {
+	transform: scaleX(1);
+}
+
+.nav-container ul li .active-link::before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(
+		to left,
+		var(--white),
+		var(--primary-800) 10%,
+		var(--primary-800) 90%,
+		var(--white) 100%
+	);
+}
+
+/*Nav link hover animation. Creates a thin background color layer located at the bottom of the link. Upon hover/focus
+the line then scales to full width using the transition listed.*/
+.nav-container ul li .link::before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(
+		to left,
+		var(--white),
+		var(--primary) 5%,
+		var(--primary) 95%,
+		var(--white) 100%
+	);
+	transform: scaleX(0);
+	transition: transform 0.2s ease-in-out 1ms;
+	will-change: transform;
+}
+
+.nav-container ul li .link:focus::before,
+.nav-container ul li .link:focus-within::before,
+.nav-container ul li .link:hover::before {
+	transform: scaleX(1);
+}
+
+.nav-container ul li .active-link::before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(
+		to left,
+		var(--white),
+		var(--primary-800) 10%,
+		var(--primary-800) 90%,
+		var(--white) 100%
+	);
+}
+
+/*Style for replacement logo. Remove logo from nav bar for expanding side bar and puts it back in the header*/
+.logo-small-link {
+	position: relative;
+	display: none;
+	margin-top: 4vh;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	width: 25.5vw;
+	min-width: 195px;
+	height: 100%;
+}
+
+.logo-small-link img {
+	width: 100%;
+	height: 100%;
+}
+
+/*Menu icon and actual checkbox are hidden with display:none at desktop sizes. Set checkbox:checked property to display
+nav-container at its initial value. Creates a pop out menu using menu icon at mobile sizes.*/
+#nav-toggle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+.nav-toggle-img {
+	position: absolute;
+	display: none;
+	left: 7%;
+	top: 60%;
+	width: fit-content;
+	cursor: url(images/Cursor.svg), default;
+}
+
+.nav-toggle-img svg path {
+	transition: fill 400ms ease-in-out;
+	will-change: fill;
+}
+
+input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(1) {
+	fill: rgba(167, 139, 74, 0.75);
+}
+
+input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(2) {
+	fill: var(--primary);
+}
+
+input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(3) {
+	fill: rgba(167, 139, 74, 0.5);
+}
+
+input[type="checkbox"]:checked ~ label ~ .nav-container,
+input[type="checkbox"]:checked ~ label ~ .nav-container > * {
+	z-index: 3;
+	opacity: 1;
+}
+
+/*Media query for mobile screens starting at 800px. Nav-container and all child elements are moved into an absolute position
+and switched to display: none. Menu button becomes visible.*/
+
+@media (max-width: 800px) {
+	.nav-container {
+		z-index: 1;
+		opacity: 0;
+		position: absolute;
+		padding: 0.35vh 0;
+		background: var(--white);
+		overflow: hidden;
+	}
+
+	.nav-container > * {
+		opacity: 0;
+	}
+
+	.nav-container .nav-container ul {
+		padding: 0;
+	}
+
+	.nav-container ul li {
+		margin-inline: none !important;
+		padding: 0;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.nav-container ul li a {
+		font-size: 1rem !important;
+	}
+
+	.nav-container ul li:nth-child(3) {
+		display: none;
+	}
+
+	.nav-toggle-img {
+		display: block;
+	}
+
+	.logo-small-link {
+		display: flex;
+	}
+}
+/*End Header design and style*/
+/*Begin main styling*/
+main {
+	height: auto;
+	width: 100%;
+}
+
+.container {
+	margin: 10vh auto;
+	padding: 0 3vw;
+	position: relative;
+	height: 100%;
+	width: 92vw;
+	max-width: 1370px;
+	border-left: 0.5px solid rgba(21, 18, 10, 0.256);
+	border-right: 0.5px solid rgba(21, 18, 10, 0.256);
+	box-shadow: rgba(50, 50, 93, 0.25) -42px 0px 30px -40px,
+		rgba(50, 50, 93, 0.25) 42px 0px 30px -40px;
+}
+
+.container::before {
+	content: "";
+	position: absolute;
+	display: block;
+	top: 0.45%;
+	left: -1.5%;
+	height: 99%;
+	width: 103%;
+	border-top: 0.5px solid rgba(21, 18, 10, 0.256);
+	border-bottom: 0.5px solid rgba(21, 18, 10, 0.256);
+	z-index: -1;
+}
+
+.container .tagline {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 10%;
+	width: fit-content;
+	font-size: 1.2rem;
+	color: var(--primary-800);
+	opacity: 0.85;
+}
+
+.tagline a {
+	color: var(--primary);
+	font-size: 1.5rem;
+	text-decoration: none;
+	cursor: url(images/Cursor.svg), default;
+	opacity: 0.85;
+	will-change: opacity;
+}
+
+.tagline a:hover,
+.tagline a:focus,
+.taglinea:focus-within {
+	opacity: 0.65;
+}
+
+@media (max-width: 950px) {
+	.container .tagline {
+		margin-left: auto;
+		margin-right: auto;
+		width: 60%;
+		text-align: center;
+		font-size: 1rem;
+		opacity: 1;
+	}
+
+	.tagline a {
+		font-size: 1.2rem;
+		opacity: 1;
+	}
+
+	.tagline a:hover,
+	.tagline a:focus,
+	.taglinea:focus-within {
+		opacity: 0.75;
+	}
+}
+
+/*Begin grid design*/
+.grid-container {
+	margin: 8vh auto 18vh auto;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex: 1 1 auto;
+	flex-wrap: wrap;
+	max-width: 100%;
+	height: 100%;
+}
+
+.grid-container h2 {
+	margin-left: 5vw;
+	margin-bottom: 3vh;
+	padding-left: 0.5%;
+	position: relative;
+	width: 100%;
+	color: var(--primary-800);
+	font-size: 2rem;
+	font-style: italic;
+	opacity: 0.85;
+}
+
+.grid-container h2::before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 6ch;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(
+		to right,
+		var(--white),
+		var(--primary) 10%,
+		var(--primary) 90%,
+		var(--white) 100%
+	);
+}
+
+@media (max-width: 950px) {
+	.grid-container h2 {
+		padding-left: 1%;
+		font-size: 1.5rem;
+	}
+}
+
+.people {
+	margin-bottom: 15vh;
+	display: flex;
+	flex: 1 1 auto;
+	flex-wrap: wrap;
+	width: 100%;
+	height: auto;
+}
+
+.people .gallery-grid .p2 img {
+	object-position: 40%;
+}
+
+.people .gallery-grid .p6 img {
+	object-position: 40%;
+}
+
+.people .gallery-grid .p9 img {
+	object-position: 40%;
+}
+
+.people .gallery-grid .p12 img {
+	object-position: 30%;
+}
+
+.people .gallery-grid .p15 img {
+	object-position: top;
+}
+
+.people .gallery-grid .p21 img {
+	object-position: top;
+}
+
+.people .gallery-grid .p23 img {
+	object-position: top;
+}
+
+.nature {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	height: auto;
+}
+
+.nature .gallery-grid .n3 img {
+	object-position: center;
+}
+
+.nature .gallery-grid .n5 img {
+	object-position: left;
+}
+
+.nature .gallery-grid .n6 img {
+	object-position: right;
+}
+
+.nature .gallery-grid .n10 img {
+	object-position: 70%;
+}
+
+.nature .gallery-grid .n12 img {
+	object-position: 40%;
+}
+
+.gallery-grid div {
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	width: 100%;
+	max-width: 400px;
+	max-height: 500px;
+}
+
+.gallery-grid div img {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	cursor: default !important;
+}
+
+.gallery-grid {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: 1280px;
+	height: auto;
+	max-height: 6500px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(7, 1fr);
+	column-gap: 2vw;
+	row-gap: 2vh;
+}
+
+/*End main styling*/
+/*Begin Footer Design and Layout*/
+footer {
+	display: flex;
+	width: 100%;
+	height: 25vh;
+	border-top: 0.5px solid var(--white);
+	box-shadow: rgba(167, 139, 74, 0.45) 0px -20px 70px -40px,
+		rgba(167, 139, 74, 0.25) 0px -40px 70px -40px;
+}
+
+.footer-container {
+	margin-top: 1vh;
+	margin-bottom: 2vh;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	border-top: 0.5px solid var(--black);
+}
+
+.footer-container .foot {
+	margin-top: 0.5vh;
+	width: 100%;
+	height: auto;
+	border-top: 0.5px solid var(--black);
+}
+
+.left,
+.right {
+	padding: 2vh 2vw;
+	display: flex;
+	flex-direction: column;
+}
+
+.left {
+	justify-content: space-between;
+}
+
+.left img {
+	margin-left: 1.5vw;
+	border-left: 0.5px solid var(--primary);
+	border-top: 0.5px solid var(--primary);
+	cursor: default;
+}
+
+.f-sociallinks {
+	margin-left: 1.5vw;
+	padding-right: 30%;
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	width: 90%;
+	height: auto;
+	cursor: url(images/Cursor.svg), default;
+}
+
+.f-sociallinks svg {
+	height: 30px;
+	width: auto;
+	border-radius: 8px;
+	cursor: url(images/Cursor.svg), default;
+}
+
+.f-sociallinks .f-linkedin {
+	padding: 3px !important;
+}
+
+.f-sociallinks a svg path {
+	transition-duration: 0.25s;
+	transition-delay: 0s;
+	will-change: fill;
+}
+
+.f-instagram:hover,
+.f-instagram:focus,
+.f-instagram:focus-within,
+.f-instagram:hover path,
+.f-instagram:focus path,
+.f-instagram:focus-within path {
+	background: linear-gradient(
+		to top right,
+		rgba(255, 190, 11, 0.65),
+		rgba(251, 86, 7, 0.65),
+		rgba(131, 56, 236, 0.65),
+		rgba(255, 0, 110, 0.65),
+		rgba(255, 0, 110, 0.65)
+	);
+	fill: white;
+	transition-delay: 0s;
+}
+
+.f-facebook:hover,
+.f-facebook:focus,
+.f-facebook:focus-within,
+.f-facebook:hover path,
+.f-facebook:focus path,
+.f-facebook:focus-within path {
+	background: radial-gradient(
+		rgb(4, 119, 242),
+		rgb(95, 159, 242),
+		rgb(201, 219, 255)
+	);
+	fill: white;
+	transition-delay: 0s;
+}
+
+.f-pintrest:hover,
+.f-pintrest:focus,
+.f-pintrest:focus-within,
+.f-pintrest:hover path,
+.f-pintrest:focus path,
+.f-pintrest:focus-within path {
+	background: radial-gradient(rgb(204, 68, 75), rgb(204, 68, 75), white);
+	fill: white;
+	transition-delay: 0s;
+}
+
+.f-linkedin:hover,
+.f-linkedin:focus,
+.f-linkedin:focus-within,
+.f-linkedin:hover path,
+.f-linkedin:focus path,
+.f-linkedin:focus-within path {
+	background: radial-gradient(
+		rgb(66, 103, 178),
+		rgb(88, 144, 255),
+		rgb(24, 119, 242)
+	);
+	fill: white;
+	transition-delay: 0s;
+}
+
+.right > * {
+	margin-top: 1vh;
+	margin-left: auto;
+	margin-right: 5vw;
+}
+
+.right .location {
+	display: flex;
+	width: 28vw;
+	height: 10vh;
+	opacity: 0.45;
+	transition: opacity 0.5s ease 0.5s;
+	will-change: opacity;
+	cursor: url(images/Cursor.svg), default;
+}
+
+.right .location a,
+img {
+	display: flex;
+	flex-direction: column;
+	margin-left: auto;
+	margin-right: auto;
+	align-self: center;
+	cursor: url(images/Cursor.svg), default;
+}
+
+.right .location a {
+	margin-top: 2vh;
+	color: inherit;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.right .location img {
+	margin-bottom: 2vh;
+}
+
+.right .location:hover,
+.right .location:focus,
+.right .location:focus-within {
+	opacity: 1;
+	transition-delay: 0s;
+}
+
+.right .f-copy {
+	margin-top: 7vh;
+	width: 28vw;
+	text-align: center;
+}
+
+@media (max-width: 700px) {
+	.f-sociallinks {
+		padding-right: 20% !important;
+	}
+
+	.f-copy {
+		font-size: 2vw !important;
+	}
+
+	.right {
+		font-size: 2.5vw;
+	}
+}
+
+/*End footer styling*/
+/*END PAGE*/

@@ -1,0 +1,1042 @@
+:root {
+	--white: #ffffff;
+	--accent-100: #f3f9e3;
+	--accent-200: #d3c6a6;
+	--primary: #a78b4a;
+	--accent-600: #534627;
+	--primary-800: #15120a;
+	--black-100: #0000002a;
+	--black: #000000;
+
+	font-family: "Barlow", sans-serif;
+}
+
+/*Set variables based on clients logo. --primary = Metallic Sunburst, found in the WSP logo lettering. I created a color palette
+on coolers.co and chose some subtle earthy tones for possible accents. Client likes the --white, clean appearance. Want to maintain
+simplicity with --white and --primary, but like the idea of using --primary-800 as the text color to create a more soothing effect.*/
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100vh;
+	width: auto;
+}
+
+header {
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+
+/*Begin nav bar styling*/
+.nav-container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: 1600px;
+	height: auto;
+}
+
+.nav-container ul {
+	padding: 2vh 5vw;
+	display: flex;
+	width: 100%;
+	max-width: 1600px;
+	height: auto;
+}
+
+.nav-container ul li {
+	margin-inline: 2vw;
+	width: fit-content;
+	height: auto;
+	align-self: baseline;
+	text-align: center;
+	list-style: none;
+}
+
+.nav-container ul li:nth-child(3) {
+	margin-left: auto;
+	margin-right: auto;
+	width: fit-content;
+	height: auto;
+}
+
+.nav-container ul li .link,
+.nav-container ul li .active-link {
+	position: relative;
+	padding: 1px;
+	text-decoration: none;
+	font-size: 1.25rem;
+	opacity: 0.85;
+	color: var(--primary-800);
+	cursor: url(images/Cursor.svg), default;
+}
+
+/* .nav-container ul li .active-link {
+	cursor: default !important;
+} */
+
+.nav-container .img-container {
+	display: flex;
+	aspect-ratio: 1;
+	width: 25vw;
+	max-width: 400px;
+	height: auto;
+	max-height: 400px;
+	overflow: auto;
+	cursor: url(images/Cursor.svg), default;
+}
+
+a .img-container img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+/*Nav link hover animation. Creates a thin background color layer located at the bottom of the link. Upon hover/focus
+the line then scales to full width using the transition listed.*/
+.nav-container ul li .link::before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(
+		to left,
+		var(--white),
+		var(--primary) 5%,
+		var(--primary) 95%,
+		var(--white) 100%
+	);
+	transform: scaleX(0);
+	transition: transform 0.2s ease-in-out 1ms;
+	will-change: transform;
+}
+
+.nav-container ul li .link:focus::before,
+.nav-container ul li .link:focus-within::before,
+.nav-container ul li .link:hover::before {
+	transform: scaleX(1);
+}
+
+/* .nav-container ul li .active-link::before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(
+		to left,
+		var(--white),
+		var(--primary-800) 10%,
+		var(--primary-800) 90%,
+		var(--white) 100%
+	);
+
+	
+} Only needed for Secondary Pages, when an active link is permanently styled*/
+
+/*Style for replacement logo. Remove logo from nav bar for expanding side bar and puts it back in the header*/
+.logo-small-link {
+	position: relative;
+	display: none;
+	margin-top: 4vh;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	width: 25.5vw;
+	min-width: 195px;
+	height: 100%;
+}
+
+.logo-small-link img {
+	width: 100%;
+	height: 100%;
+}
+
+/*Menu icon and actual checkbox are hidden with display:none at desktop sizes. Set checkbox:checked property to display
+nav-container at its initial value. Creates a pop out menu using menu icon at mobile sizes.*/
+#nav-toggle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+.nav-toggle-img {
+	position: absolute;
+	display: none;
+	left: 7%;
+	top: 60%;
+	width: fit-content;
+	cursor: url(images/Cursor.svg), default;
+}
+
+.nav-toggle-img svg path {
+	transition: fill 400ms ease-in-out;
+	will-change: fill;
+}
+
+input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(1) {
+	fill: rgba(167, 139, 74, 0.75);
+}
+
+input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(2) {
+	fill: var(--primary);
+}
+
+input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(3) {
+	fill: rgba(167, 139, 74, 0.5);
+}
+
+input[type="checkbox"]:checked ~ label ~ .nav-container,
+input[type="checkbox"]:checked ~ label ~ .nav-container > * {
+	z-index: 3;
+	opacity: 1;
+}
+
+/*Media query for mobile screens starting at 800px. Nav-container and all child elements are moved into an absolute position
+and switched to display: none. Menu button becomes visible.*/
+
+@media (max-width: 800px) {
+	.nav-container {
+		z-index: 1;
+		opacity: 0;
+		position: absolute;
+		padding: 0.35vh 0;
+		background: var(--white);
+		overflow: hidden;
+	}
+
+	.nav-container > * {
+		opacity: 0;
+	}
+
+	.nav-container .nav-container ul {
+		padding: 0;
+	}
+
+	.nav-container ul li {
+		margin-inline: none !important;
+		padding: 0;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.nav-container ul li a {
+		font-size: 1rem !important;
+	}
+
+	.nav-container ul li:nth-child(3) {
+		display: none;
+	}
+
+	.nav-toggle-img {
+		display: block;
+	}
+
+	.logo-small-link {
+		display: flex;
+	}
+}
+/*End Header design and style*/
+
+/*Begin body styling*/
+.home-container {
+	z-index: 1;
+	position: relative;
+	width: 98%;
+	max-width: 1476px;
+	margin-left: auto;
+	margin-right: auto;
+	height: auto;
+	padding: 1.5vh 0 1vh 0;
+	box-shadow: #a78b4a59 0px 40px 60px -40px, #a78b4a26 0px 60px 60px -40px;
+}
+
+.slider-container {
+	display: flex;
+	width: 100%;
+	height: 60vh;
+}
+
+.img-1,
+.img-2,
+.img-3 {
+	z-index: 0;
+	margin-inline: 0.35%;
+	position: relative;
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+/*image slideshow keyframe animation set at 60 seconds*/
+.img-1 img,
+.img-2 img,
+.img-3 img {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	object-fit: cover;
+	object-position: center;
+	z-index: 0;
+	opacity: 0;
+	cursor: default;
+}
+
+.img-3 > img:nth-child(1) {
+	object-position: 53%;
+}
+
+.img-3 > img:nth-child(2) {
+	object-position: top;
+}
+
+.img-1 img {
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	-webkit-animation: imageAnimation 27s linear infinite 0s;
+	-moz-animation: imageAnimation 27s linear infinite 0s;
+	-o-animation: imageAnimation 27s linear infinite 0s;
+	-ms-animation: imageAnimation 27s linear infinite 0s;
+	animation: imageAnimation 27s linear infinite 0s;
+	/* animation-play-state: paused; */
+}
+
+.img-1 > img:nth-child(2) {
+	-webkit-animation-delay: 9s;
+	-moz-animation-delay: 9s;
+	-o-animation-delay: 9s;
+	-ms-animation-delay: 9s;
+	animation-delay: 9s;
+}
+
+.img-1 > img:nth-child(3) {
+	-webkit-animation-delay: 18s;
+	-moz-animation-delay: 18s;
+	-o-animation-delay: 18s;
+	-ms-animation-delay: 18s;
+	animation-delay: 18s;
+}
+
+.img-2 img {
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	-webkit-animation: imageAnimation 33s linear infinite 0s;
+	-moz-animation: imageAnimation 33s linear infinite 0s;
+	-o-animation: imageAnimation 33s linear infinite 0s;
+	-ms-animation: imageAnimation 33s linear infinite 0s;
+	animation: imageAnimation 33s linear infinite 0s;
+	/* animation-play-state: paused; */
+}
+
+.img-2 > img:nth-child(2) {
+	-webkit-animation-delay: 11s;
+	-moz-animation-delay: 11s;
+	-o-animation-delay: 11s;
+	-ms-animation-delay: 11s;
+	animation-delay: 11s;
+}
+
+.img-2 > img:nth-child(3) {
+	-webkit-animation-delay: 22s;
+	-moz-animation-delay: 22s;
+	-o-animation-delay: 22s;
+	-ms-animation-delay: 22s;
+	animation-delay: 22s;
+}
+
+.img-3 img {
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	-webkit-animation: imageAnimation 30s linear infinite 0s;
+	-moz-animation: imageAnimation 30s linear infinite 0s;
+	-o-animation: imageAnimation 30s linear infinite 0s;
+	-ms-animation: imageAnimation 30s linear infinite 0s;
+	animation: imageAnimation 30s linear infinite 0s;
+	/* animation-play-state: paused; */
+}
+
+.img-3 > img:nth-child(2) {
+	-webkit-animation-delay: 10s;
+	-moz-animation-delay: 10s;
+	-o-animation-delay: 10s;
+	-ms-animation-delay: 10s;
+	animation-delay: 10s;
+}
+
+.img-3 > img:nth-child(3) {
+	-webkit-animation-delay: 20s;
+	-moz-animation-delay: 20s;
+	-o-animation-delay: 20s;
+	-ms-animation-delay: 20s;
+	animation-delay: 20s;
+}
+
+@-webkit-keyframes imageAnimation {
+	0% {
+		opacity: 0;
+	}
+	2% {
+		opacity: 1;
+	}
+	36% {
+		opacity: 1;
+	}
+	37% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@-moz-keyframes imageAnimation {
+	0% {
+		opacity: 0;
+	}
+	2% {
+		opacity: 1;
+	}
+	36% {
+		opacity: 1;
+	}
+	37% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@-ms-keyframes imageAnimation {
+	0% {
+		opacity: 0;
+	}
+	2% {
+		opacity: 1;
+	}
+	36% {
+		opacity: 1;
+	}
+	37% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes imageAnimation {
+	0% {
+		opacity: 0;
+	}
+	2% {
+		opacity: 1;
+	}
+	36% {
+		opacity: 1;
+	}
+	37% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+/*Sizing home images from desktop to mobile. Switching from flex to vertical stack.*/
+@media (max-width: 1250px) {
+	.slider-container {
+		height: 50vh;
+	}
+}
+
+@media (max-width: 1000px) {
+	.slider-container {
+		height: 40vh;
+	}
+}
+
+@media (max-width: 800px) {
+	.slider-container {
+		display: block;
+		height: auto;
+		width: 100%;
+		padding: 1vw;
+	}
+
+	.img-1,
+	.img-2,
+	.img-3 {
+		display: flex;
+		margin-left: auto;
+		margin-right: auto;
+		width: 90%;
+		height: 40vh;
+		margin-bottom: 2%;
+		overflow: hidden;
+	}
+
+	.img-2 > img:nth-child(1),
+	.img-2 > img:nth-child(3) {
+		position: absolute;
+		width: 88vw;
+		height: 74vh;
+	}
+
+	.img-3 > img:nth-child(2) {
+		position: absolute;
+		width: 87vw;
+		height: 70vh;
+	}
+}
+/*End Home Page styling*/
+
+/*Begin Gallery Page*/
+.gallery-container {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 40vh;
+	max-width: 1476px;
+	height: 100%;
+}
+
+.gallery-content {
+	background-image: linear-gradient(
+		rgb(255, 255, 255),
+		rgba(167, 139, 74, 0.01),
+		rgba(167, 139, 74, 0.369),
+		rgb(167, 139, 74, 0.46),
+		rgba(167, 139, 74, 0.369),
+		rgba(167, 139, 74, 0.171),
+		rgb(255, 255, 255)
+	);
+	width: 100%;
+	height: 100%;
+}
+
+/*Grid layout and design. 21 grid areas. 1 per picture. I used a grid generator to help me place and design the layout to match the mix of landscapes and portraits. Had to break it down into very small fractions to avoid obvious ratio distortion. Very pleased with the outcome, but would like to keep adding to the UI/UX of this massive piece of the landing page.*/
+.gp1 {
+	grid-area: gp1;
+}
+.gp2 {
+	grid-area: gp2;
+}
+.gp3 {
+	grid-area: gp3;
+}
+.gp4 {
+	grid-area: gp4;
+}
+.gp5 {
+	grid-area: gp5;
+}
+.gp6 {
+	grid-area: gp6;
+}
+.gp7 {
+	grid-area: gp7;
+}
+.gp8 {
+	grid-area: gp8;
+}
+.gp9 {
+	grid-area: gp9;
+}
+.gp10 {
+	grid-area: gp10;
+}
+.gp11 {
+	grid-area: gp11;
+}
+.gp12 {
+	grid-area: gp12;
+}
+.gp13 {
+	grid-area: gp13;
+}
+.gp14 {
+	grid-area: gp14;
+}
+.gp15 {
+	grid-area: gp15;
+}
+.gp16 {
+	grid-area: gp16;
+}
+.gp17 {
+	grid-area: gp17;
+}
+.gp18 {
+	grid-area: gp18;
+}
+.gp19 {
+	grid-area: gp19;
+}
+.gp20 {
+	grid-area: gp20;
+}
+.gp21 {
+	grid-area: gp21;
+}
+
+/*Editing the position of images*/
+.gp2 img {
+	object-position: 30%;
+}
+
+.gp3 img {
+	object-position: 58%;
+}
+
+.gp10 img {
+	object-position: 72%;
+}
+
+.gp17 img {
+	object-position: 58%;
+}
+
+.gp19 img {
+	object-position: 53%;
+}
+
+/*Gallery grid layout*/
+.gallery-grid > div {
+	display: flex;
+	width: 100%;
+	/* min-height: 0; */
+}
+
+.gallery-grid div > img {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	cursor: default !important;
+}
+
+.gallery-grid {
+	padding: 0vh 3vw;
+	width: 100%;
+	height: auto;
+	max-height: 5000vh;
+	display: grid;
+	grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr;
+	grid-template-rows: 0.25fr 1.25fr 0.25fr 0.25fr 1.5fr 0.25fr 0.25fr 1.25fr 0.25fr 0.25fr 1.5fr 0.25fr 0.25fr 1.25fr 0.25fr 0.25fr 1.25fr 0.25fr 0.25fr 2fr 0.25fr 0.25fr 1.5fr 0.25fr;
+	column-gap: 0.65vw;
+	row-gap: 0.65vh;
+	grid-template-areas:
+		"gp1 gp1 gp1 gp1 gp1 gp2 gp2 gp2 gp2 gp2 gp2 gp2 gp2 gp3 gp3 gp3 gp3 gp3"
+		"gp1 gp1 gp1 gp1 gp1 gp2 gp2 gp2 gp2 gp2 gp2 gp2 gp2 gp3 gp3 gp3 gp3 gp3"
+		"gp1 gp1 gp1 gp1 gp1 gp2 gp2 gp2 gp2 gp2 gp2 gp2 gp2 gp3 gp3 gp3 gp3 gp3"
+		"gp4 gp4 gp4 gp4 gp4 gp5 gp5 gp5 gp5 gp5 gp6 gp6 gp6 gp6 gp6 gp6 gp6 gp6"
+		"gp4 gp4 gp4 gp4 gp4 gp5 gp5 gp5 gp5 gp5 gp6 gp6 gp6 gp6 gp6 gp6 gp6 gp6"
+		"gp4 gp4 gp4 gp4 gp4 gp5 gp5 gp5 gp5 gp5 gp6 gp6 gp6 gp6 gp6 gp6 gp6 gp6"
+		"gp7 gp7 gp7 gp7 gp7 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8"
+		"gp7 gp7 gp7 gp7 gp7 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8"
+		"gp7 gp7 gp7 gp7 gp7 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8 gp8"
+		"gp9 gp9 gp9 gp9 gp9 gp10 gp10 gp10 gp10 gp10 gp11 gp11 gp11 gp11 gp11 gp11 gp11 gp11"
+		"gp9 gp9 gp9 gp9 gp9 gp10 gp10 gp10 gp10 gp10 gp11 gp11 gp11 gp11 gp11 gp11 gp11 gp11"
+		"gp9 gp9 gp9 gp9 gp9 gp10 gp10 gp10 gp10 gp10 gp11 gp11 gp11 gp11 gp11 gp11 gp11 gp11"
+		"gp12 gp12 gp12 gp12 gp12 gp12 gp12 gp12 gp12 gp13 gp13 gp13 gp13 gp13 gp13 gp13 gp13 gp13"
+		"gp12 gp12 gp12 gp12 gp12 gp12 gp12 gp12 gp12 gp13 gp13 gp13 gp13 gp13 gp13 gp13 gp13 gp13"
+		"gp12 gp12 gp12 gp12 gp12 gp12 gp12 gp12 gp12 gp13 gp13 gp13 gp13 gp13 gp13 gp13 gp13 gp13"
+		"gp14 gp14 gp14 gp14 gp14 gp14 gp14 gp14 gp14 gp15 gp15 gp15 gp15 gp15 gp15 gp15 gp15 gp15"
+		"gp14 gp14 gp14 gp14 gp14 gp14 gp14 gp14 gp14 gp15 gp15 gp15 gp15 gp15 gp15 gp15 gp15 gp15"
+		"gp14 gp14 gp14 gp14 gp14 gp14 gp14 gp14 gp14 gp15 gp15 gp15 gp15 gp15 gp15 gp15 gp15 gp15"
+		"gp16 gp16 gp16 gp16 gp16 gp16 gp17 gp17 gp17 gp17 gp17 gp17 gp18 gp18 gp18 gp18 gp18 gp18"
+		"gp16 gp16 gp16 gp16 gp16 gp16 gp17 gp17 gp17 gp17 gp17 gp17 gp18 gp18 gp18 gp18 gp18 gp18"
+		"gp16 gp16 gp16 gp16 gp16 gp16 gp17 gp17 gp17 gp17 gp17 gp17 gp18 gp18 gp18 gp18 gp18 gp18"
+		"gp19 gp19 gp19 gp19 gp19 gp20 gp20 gp20 gp20 gp20 gp21 gp21 gp21 gp21 gp21 gp21 gp21 gp21"
+		"gp19 gp19 gp19 gp19 gp19 gp20 gp20 gp20 gp20 gp20 gp21 gp21 gp21 gp21 gp21 gp21 gp21 gp21"
+		"gp19 gp19 gp19 gp19 gp19 gp20 gp20 gp20 gp20 gp20 gp21 gp21 gp21 gp21 gp21 gp21 gp21 gp21";
+}
+
+/*Begin About Me preview*/
+.about-container {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 10vh;
+	padding-bottom: 18vh;
+	max-width: 1476px;
+	height: auto;
+}
+
+.inner-about {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 4vh;
+	padding: 8vh 2vw;
+	display: flex;
+	flex: 0 1 auto;
+	width: 95%;
+	height: auto;
+	border-right: 0.5px solid var(--primary-800);
+}
+
+/*Professional Headshot*/
+.left-container {
+	position: relative;
+	padding: 0 8vw 0 2vw;
+	height: 65vh;
+	width: 100%;
+	max-width: 600px;
+	background-image: url(images/Alex_1.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 12px 28px 0px,
+		rgba(0, 0, 0, 0.2) 0px 2px 4px 0px,
+		rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+/*Short summary*/
+.right-container {
+	position: relative;
+	padding: 5vh 3vw 5vh 5vw;
+	height: 75vh;
+	width: auto;
+	border-right: 0.5px solid var(--primary-800);
+}
+
+.right-container .rt-container {
+	height: 100%;
+	box-shadow: 45px -15px 35px -32px #a78b4a40;
+}
+
+.right-container h2 {
+	padding-top: 3vh;
+}
+
+.right-container h2,
+h3 {
+	font-style: italic;
+	color: var(--primary-800);
+	opacity: 0.65;
+}
+
+.right-container p {
+	padding-top: 6vh;
+	padding-right: 3vw;
+	font-size: 1.2rem;
+	line-height: 2.7vh;
+	color: var(--primary-800);
+	opacity: 0.45;
+}
+
+.right-container h3 {
+	margin-top: 8vh;
+	color: var(--primary);
+	will-change: opacity;
+}
+
+.right-container h3 a {
+	position: relative;
+	text-decoration: none;
+	color: inherit;
+	cursor: url(images/Cursor.svg), default;
+}
+
+/*Contact link hover animations*/
+.right-container h3 a::before {
+	content: "";
+	position: absolute;
+	display: block;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	height: 1.5px;
+	background-image: linear-gradient(
+		to left,
+		var(--white),
+		var(--primary) 5%,
+		var(--primary) 95%,
+		var(--white) 100%
+	);
+	transform: scaleX(0);
+	transition: transform 0.2s ease-in-out 1ms;
+	will-change: transform;
+}
+
+.right-container h3 a:hover::before,
+.right-container h3 a:focus::before,
+.right-container h3 a:focus-within::before {
+	transform: scaleX(1);
+}
+
+.right-container h3:hover,
+.right-container h3:focus,
+.right-container h3:focus-within {
+	opacity: 0.77;
+}
+
+/*Media Query to reformat the about me section during resizing and smaller screens*/
+@media (max-width: 1000px) {
+	.about-container {
+		padding: 12vh 3vw;
+		padding-bottom: 10vh !important;
+	}
+
+	.inner-about {
+		padding: 2vh 5vw !important;
+		position: relative;
+		display: block;
+		width: 93vw !important;
+		height: auto;
+	}
+
+	.left-container {
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 3vh;
+		width: auto !important;
+		height: 50vh !important;
+		min-height: 500px;
+	}
+
+	.right-container {
+		margin-left: auto !important;
+		margin-right: auto !important;
+		padding: 0 1.5vw 0 2vw !important;
+		display: flex;
+		flex-direction: row-reverse;
+		width: 80vw !important;
+		height: auto !important;
+		box-shadow: 50px 0 35px -25px rgba(167, 139, 74, 0.25) !important;
+	}
+
+	.right-container .rt-container {
+		margin: 2.5vh auto;
+		border: none !important;
+		box-shadow: none !important;
+	}
+
+	.right-container h2,
+	h3 {
+		margin-left: auto !important;
+		margin-right: auto !important;
+		padding: 3vh 0 !important;
+		width: fit-content;
+		opacity: 0.92 !important;
+	}
+
+	.right-container p {
+		padding: 0 2vw 0 3.5vw !important;
+		font-size: 0.9rem !important;
+		line-height: 2.25em !important;
+		opacity: 0.65 !important;
+	}
+}
+
+/*Begin Footer Design and Layout*/
+footer {
+	display: flex;
+	width: 100%;
+	height: 25vh;
+	border-top: 0.5px solid var(--white);
+	box-shadow: rgba(167, 139, 74, 0.45) 0px -20px 70px -40px,
+		rgba(167, 139, 74, 0.25) 0px -40px 70px -40px;
+}
+
+.footer-container {
+	margin-top: 1vh;
+	margin-bottom: 2vh;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	border-top: 0.5px solid var(--black);
+}
+
+.footer-container .foot {
+	margin-top: 0.5vh;
+	width: 100%;
+	height: auto;
+	border-top: 0.5px solid var(--black);
+}
+
+.left,
+.right {
+	padding: 2vh 2vw;
+	display: flex;
+	flex-direction: column;
+}
+
+.left {
+	justify-content: space-between;
+}
+
+.left img {
+	margin-left: 1.5vw;
+	border-left: 0.5px solid var(--primary);
+	border-top: 0.5px solid var(--primary);
+	cursor: default;
+}
+
+.f-sociallinks {
+	margin-left: 1.5vw;
+	padding-right: 30%;
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	width: 90%;
+	height: auto;
+	cursor: url(images/Cursor.svg), default;
+}
+
+.f-sociallinks svg {
+	height: 30px;
+	width: auto;
+	border-radius: 8px;
+	cursor: url(images/Cursor.svg), default;
+}
+
+.f-sociallinks .f-linkedin {
+	padding: 3px !important;
+}
+
+.f-sociallinks a svg path {
+	transition-duration: 0.25s;
+	transition-delay: 0s;
+	will-change: fill;
+}
+
+.f-instagram:hover,
+.f-instagram:focus,
+.f-instagram:focus-within,
+.f-instagram:hover path,
+.f-instagram:focus path,
+.f-instagram:focus-within path {
+	background: linear-gradient(
+		to top right,
+		rgba(255, 190, 11, 0.65),
+		rgba(251, 86, 7, 0.65),
+		rgba(131, 56, 236, 0.65),
+		rgba(255, 0, 110, 0.65),
+		rgba(255, 0, 110, 0.65)
+	);
+	fill: white;
+	transition-delay: 0s;
+}
+
+.f-facebook:hover,
+.f-facebook:focus,
+.f-facebook:focus-within,
+.f-facebook:hover path,
+.f-facebook:focus path,
+.f-facebook:focus-within path {
+	background: radial-gradient(
+		rgb(4, 119, 242),
+		rgb(95, 159, 242),
+		rgb(201, 219, 255)
+	);
+	fill: white;
+	transition-delay: 0s;
+}
+
+.f-pintrest:hover,
+.f-pintrest:focus,
+.f-pintrest:focus-within,
+.f-pintrest:hover path,
+.f-pintrest:focus path,
+.f-pintrest:focus-within path {
+	background: radial-gradient(rgb(204, 68, 75), rgb(204, 68, 75), white);
+	fill: white;
+	transition-delay: 0s;
+}
+
+.f-linkedin:hover,
+.f-linkedin:focus,
+.f-linkedin:focus-within,
+.f-linkedin:hover path,
+.f-linkedin:focus path,
+.f-linkedin:focus-within path {
+	background: radial-gradient(
+		rgb(66, 103, 178),
+		rgb(88, 144, 255),
+		rgb(24, 119, 242)
+	);
+	fill: white;
+	transition-delay: 0s;
+}
+
+.right > * {
+	margin-top: 1vh;
+	margin-left: auto;
+	margin-right: 5vw;
+}
+
+.right .location {
+	display: flex;
+	width: 28vw;
+	height: 10vh;
+	opacity: 0.45;
+	transition: opacity 0.5s ease 0.5s;
+	will-change: opacity;
+	cursor: url(images/Cursor.svg), default;
+}
+
+.right .location a,
+img {
+	display: flex;
+	flex-direction: column;
+	margin-left: auto;
+	margin-right: auto;
+	align-self: center;
+	cursor: url(images/Cursor.svg), default;
+}
+
+.right .location a {
+	margin-top: 2vh;
+	color: inherit;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.right .location img {
+	margin-bottom: 2vh;
+}
+
+.right .location:hover,
+.right .location:focus,
+.right .location:focus-within {
+	opacity: 1;
+	transition-delay: 0s;
+}
+
+.right .f-copy {
+	margin-top: 7vh;
+	width: 28vw;
+	text-align: center;
+}
+
+@media (max-width: 700px) {
+	.f-sociallinks {
+		padding-right: 20% !important;
+	}
+
+	.f-copy {
+		font-size: 2vw !important;
+	}
+
+	.right {
+		font-size: 2.5vw;
+	}
+}
+
+/*END PAGE*/
