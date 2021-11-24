@@ -122,7 +122,7 @@ the line then scales to full width using the transition listed.*/
 	will-change: transform;
 }
 
-@media screen (any-pointer: coarse) and (any-hover: on-demand) {
+@media screen (max-width: 500px) and (pointer: coarse) and (hover: none) {
 	.nav-container ul li .link:focus::before,
 	.nav-container ul li .link:focus-within::before,
 	.nav-container ul li .link:hover::before {
