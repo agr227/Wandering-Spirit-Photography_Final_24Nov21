@@ -15,15 +15,14 @@
 on coolers.co and chose some subtle earthy tones for possible accents. Client likes the --white, clean appearance. Want to maintain
 simplicity with --white and --primary, but like the idea of using --primary-800 as the text color to create a more soothing effect.*/
 
-@media screen and (hover: any-hover), screen and (pointer: any-pointer) {
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-	}
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
+
 
 body {
 	height: 100vh;
@@ -123,10 +122,12 @@ the line then scales to full width using the transition listed.*/
 	will-change: transform;
 }
 
-.nav-container ul li .link:focus::before,
-.nav-container ul li .link:focus-within::before,
-.nav-container ul li .link:hover::before {
-	transform: scaleX(1);
+@media (any-hover: hover) and (any-pointer: pointer){
+	.nav-container ul li .link:focus::before,
+	.nav-container ul li .link:focus-within::before,
+	.nav-container ul li .link:hover::before {
+		transform: scaleX(1);
+	}
 }
 
 /* .nav-container ul li .active-link::before {
@@ -189,22 +190,30 @@ nav-container at its initial value. Creates a pop out menu using menu icon at mo
 	will-change: fill;
 }
 
-input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(1) {
-	fill: rgba(167, 139, 74, 0.75);
+@media (any-hover: hover) and (any-pointer: pointer) {
+	input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(1) {
+		fill: rgba(167, 139, 74, 0.75);
+	}
 }
 
-input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(2) {
-	fill: var(--primary);
+@media (any-hover: hover) and (any-pointer: pointer) {
+	input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(2) {
+		fill: var(--primary);
+	}
 }
 
-input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(3) {
-	fill: rgba(167, 139, 74, 0.5);
+@media (any-hover: hover) and (any-pointer: pointer) {
+	input[type="checkbox"]:checked ~ .nav-toggle-img svg path:nth-of-type(3) {
+		fill: rgba(167, 139, 74, 0.5);
+	}
 }
 
-input[type="checkbox"]:checked ~ label ~ .nav-container,
-input[type="checkbox"]:checked ~ label ~ .nav-container > * {
-	z-index: 3;
-	opacity: 1;
+@media (any-hover: hover) and (any-pointer: pointer) {
+	input[type="checkbox"]:checked ~ label ~ .nav-container,
+	input[type="checkbox"]:checked ~ label ~ .nav-container > * {
+		z-index: 3;
+		opacity: 1;
+	}
 }
 
 /*Media query for mobile screens starting at 800px. Nav-container and all child elements are moved into an absolute position
@@ -775,16 +784,17 @@ h3 {
 	will-change: transform;
 }
 
-.right-container h3 a:hover::before,
-.right-container h3 a:focus::before,
-.right-container h3 a:focus-within::before {
-	transform: scaleX(1);
-}
-
-.right-container h3:hover,
-.right-container h3:focus,
-.right-container h3:focus-within {
-	opacity: 0.77;
+@media (any-hover: hover) and (any-pointer: pointer) {
+	.right-container h3 a:hover::before,
+	.right-container h3 a:focus::before,
+	.right-container h3 a:focus-within::before {
+		transform: scaleX(1);
+	}
+	.right-container h3:hover,
+	.right-container h3:focus,
+	.right-container h3:focus-within {
+		opacity: 0.77;
+	}
 }
 
 /*Media Query to reformat the about me section during resizing and smaller screens*/
@@ -917,63 +927,62 @@ footer {
 	will-change: fill;
 }
 
-.f-instagram:hover,
-.f-instagram:focus,
-.f-instagram:focus-within,
-.f-instagram:hover path,
-.f-instagram:focus path,
-.f-instagram:focus-within path {
-	background: linear-gradient(
-		to top right,
-		rgba(255, 190, 11, 0.65),
-		rgba(251, 86, 7, 0.65),
-		rgba(131, 56, 236, 0.65),
-		rgba(255, 0, 110, 0.65),
-		rgba(255, 0, 110, 0.65)
-	);
-	fill: white;
-	transition-delay: 0s;
-}
-
-.f-facebook:hover,
-.f-facebook:focus,
-.f-facebook:focus-within,
-.f-facebook:hover path,
-.f-facebook:focus path,
-.f-facebook:focus-within path {
-	background: radial-gradient(
-		rgb(4, 119, 242),
-		rgb(95, 159, 242),
-		rgb(201, 219, 255)
-	);
-	fill: white;
-	transition-delay: 0s;
-}
-
-.f-pintrest:hover,
-.f-pintrest:focus,
-.f-pintrest:focus-within,
-.f-pintrest:hover path,
-.f-pintrest:focus path,
-.f-pintrest:focus-within path {
-	background: radial-gradient(rgb(204, 68, 75), rgb(204, 68, 75), white);
-	fill: white;
-	transition-delay: 0s;
-}
-
-.f-linkedin:hover,
-.f-linkedin:focus,
-.f-linkedin:focus-within,
-.f-linkedin:hover path,
-.f-linkedin:focus path,
-.f-linkedin:focus-within path {
-	background: radial-gradient(
-		rgb(66, 103, 178),
-		rgb(88, 144, 255),
-		rgb(24, 119, 242)
-	);
-	fill: white;
-	transition-delay: 0s;
+@media (any-hover: hover) and (any-pointer: pointer) {
+	.f-instagram:hover,
+	.f-instagram:focus,
+	.f-instagram:focus-within,
+	.f-instagram:hover path,
+	.f-instagram:focus path,
+	.f-instagram:focus-within path {
+		background: linear-gradient(
+			to top right,
+			rgba(255, 190, 11, 0.65),
+			rgba(251, 86, 7, 0.65),
+			rgba(131, 56, 236, 0.65),
+			rgba(255, 0, 110, 0.65),
+			rgba(255, 0, 110, 0.65)
+		);
+		fill: white;
+		transition-delay: 0s;
+	}
+	.f-facebook:hover,
+	.f-facebook:focus,
+	.f-facebook:focus-within,
+	.f-facebook:hover path,
+	.f-facebook:focus path,
+	.f-facebook:focus-within path {
+		background: radial-gradient(
+			rgb(4, 119, 242),
+			rgb(95, 159, 242),
+			rgb(201, 219, 255)
+		);
+		fill: white;
+		transition-delay: 0s;
+	}
+	.f-pintrest:hover,
+	.f-pintrest:focus,
+	.f-pintrest:focus-within,
+	.f-pintrest:hover path,
+	.f-pintrest:focus path,
+	.f-pintrest:focus-within path {
+		background: radial-gradient(rgb(204, 68, 75), rgb(204, 68, 75), white);
+		fill: white;
+		transition-delay: 0s;
+	}
+	.f-linkedin:hover,
+	.f-linkedin:focus,
+	.f-linkedin:focus-within,
+	.f-linkedin:hover path,
+	.f-linkedin:focus path,
+	.f-linkedin:focus-within path {
+		background: radial-gradient(
+			rgb(66, 103, 178),
+			rgb(88, 144, 255),
+			rgb(24, 119, 242)
+		);
+		fill: white;
+		transition-delay: 0s;
+	}
 }
 
 .right > * {
@@ -1014,13 +1023,15 @@ img {
 	margin-bottom: 2vh;
 }
 
-.right .location:hover,
-.right .location:focus,
-.right .location:focus-within {
-	opacity: 1;
-	transition-delay: 0s;
+@media (any-hover: hover) and (any-pointer: pointer) {
+	.right .location:hover,
+	.right .location:focus,
+	.right .location:focus-within {
+		opacity: 1;
+		transition-delay: 0s;
+	}
 }
-
+	
 .right .f-copy {
 	margin-top: 7vh;
 	width: 28vw;
