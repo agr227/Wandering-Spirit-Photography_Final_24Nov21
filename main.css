@@ -122,7 +122,7 @@ the line then scales to full width using the transition listed.*/
 	will-change: transform;
 }
 
-@media (any-hover: hover) and (any-pointer: pointer){
+@media hover (any-hover) and pointer (any-pointer) {
 	.nav-container ul li .link:focus::before,
 	.nav-container ul li .link:focus-within::before,
 	.nav-container ul li .link:hover::before {
