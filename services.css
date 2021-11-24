@@ -569,14 +569,12 @@ main {
 		will-change: transform;
 	}
 	
-	@media screen (any-hover: on-demand) and (any-pointer: coarse) {
-		.services-container .srvc-title::before {
-			transform: scaleX(1);
-			transition-delay: 0s;
-		}
+	.services-container .srvc-title:hover::before,
+	.services-container .srvc-title:focus::before, 
+	.services-container .srvc-title:focus-within::before {
+		transform: scaleX(1);
+		transition-delay: 0s;
 	}
-	
-	/*.services-container .srvc-title:hover::before,*/
 
 	.services-container div .srvc-img {
 		margin-top: 0;
