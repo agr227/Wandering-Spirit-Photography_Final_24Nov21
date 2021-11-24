@@ -4,7 +4,7 @@ Continuously updated README/journal/notes
 
 
 
-***DRAFT/WORKING COPY AS OF 17OCT2021***
+***FINAL/MINOR EDITS COPY AS OF 24NOV2021***
 
 This is my first professionally developed website, from design to implementation and to fully operational. 
 
@@ -113,4 +113,7 @@ Once I had the whole page created I went back through and fine tuned the respons
 During my final look through I changed all possible measurements to responsive units and tried to steer away from %'s.
 
 Time to do my soft preview!
+
+
+LAST UPDATED 17OCT2021
  
