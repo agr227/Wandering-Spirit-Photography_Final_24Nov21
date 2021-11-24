@@ -122,10 +122,12 @@ the line then scales to full width using the transition listed.*/
 	will-change: transform;
 }
 
-.nav-container ul li .link:focus::before,
-.nav-container ul li .link:focus-within::before,
-.nav-container ul li .link:hover::before {
-	transform: scaleX(1);
+@media screen (any-pointer: coarse) and (any-hover: on-demand) {
+	.nav-container ul li .link:focus::before,
+	.nav-container ul li .link:focus-within::before,
+	.nav-container ul li .link:hover::before {
+		transform: scaleX(1);
+	}
 }
 
 /* .nav-container ul li .active-link::before {
