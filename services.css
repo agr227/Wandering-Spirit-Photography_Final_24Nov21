@@ -569,9 +569,8 @@ main {
 		will-change: transform;
 	}
 	
-	@media (any-hover: on-demand){
-		.services-container .srvc-title:focus::before,
-		.services-container .srvc-title:focus-within::before {
+	@media screen (any-hover: on-demand) and (any-pointer: coarse) {
+		.services-container .srvc-title::before {
 			transform: scaleX(1);
 			transition-delay: 0s;
 		}
