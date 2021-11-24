@@ -15,12 +15,14 @@
 on coolers.co and chose some subtle earthy tones for possible accents. Client likes the --white, clean appearance. Want to maintain
 simplicity with --white and --primary, but like the idea of using --primary-800 as the text color to create a more soothing effect.*/
 
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+@media screen and (hover: any-hover), screen and (pointer: any-pointer) {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
 }
 
 body {
