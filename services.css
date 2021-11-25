@@ -632,7 +632,7 @@ main {
 	.seasonal {
 		margin-top: 8vh;
 		width: 86% !important;
-		height: 45vh !important;
+		height: max-content !important;
 	}
 
 	.seasonal h2 {
@@ -642,8 +642,8 @@ main {
 	.seasonal p {
 		margin-top: 2vh;
 		padding-bottom: 2vh;
-		font-size: 0.9rem;
-		line-height: 2rem;
+		font-size: 0.8rem;
+		line-height: 1.85rem;
 	}
 }
 
