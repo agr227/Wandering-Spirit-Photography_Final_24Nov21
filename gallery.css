@@ -378,6 +378,7 @@ main {
 	margin: 8vh auto 18vh auto;
 	margin-left: auto;
 	margin-right: auto;
+	padding-bottom: 8%;
 	display: flex;
 	flex: 1 1 auto;
 	flex-wrap: wrap;
