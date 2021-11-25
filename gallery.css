@@ -428,7 +428,7 @@ main {
 	flex: 1 1 auto;
 	flex-wrap: wrap;
 	width: 100%;
-	height: min-content;
+	height: auto;
 }
 
 .people .gallery-grid .p2 img {
@@ -463,7 +463,7 @@ main {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
-	height: min-content;
+	height: auto;
 }
 
 .nature .gallery-grid .n3 img {
