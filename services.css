@@ -604,12 +604,12 @@ main {
 
 .seasonal {
 	margin-top: 20vh;
-	padding: 4vh 5vw 5vh 5vw;
+	padding: 8vh 6vw;
 	display: block !important;
 	width: 80% !important;
 	min-width: 350px;
 	max-width: 728px !important;
-	height: 35vh !important;
+	height: max-content !important;
 	text-align: center;
 	background: var(--white);
 	color: var(--primary-800);
