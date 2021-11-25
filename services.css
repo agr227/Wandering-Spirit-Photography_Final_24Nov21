@@ -609,7 +609,7 @@ main {
 	width: 80% !important;
 	min-width: 350px;
 	max-width: 728px !important;
-	height: max-content !important;
+	height: auto !important;
 	text-align: center;
 	background: var(--white);
 	color: var(--primary-800);
@@ -628,11 +628,11 @@ main {
 	opacity: 0.65;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 950px) {
 	.seasonal {
 		margin-top: 8vh;
 		width: 86% !important;
-		height: max-content !important;
+		height: auto !important;
 	}
 
 	.seasonal h2 {
